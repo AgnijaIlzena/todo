@@ -14,37 +14,22 @@
  * </li>
  */
 
-
 // Contiendra les éléments de notre liste à cocher
 
 let todos = [];
+
 let form = document.querySelector("form");
 
 form.addEventListener("submit", (event) => {
-   event.preventDefault();
+  event.preventDefault();
 
-   const newItem = document.querySelector("#element")
-   todos.push(newItem.value);
-   console.log(todos);
-   
-   newItem.value = "";
-//    let node = document.createElement("li");
-//    node.innerText.
-})
+  const newItem = document.querySelector("#element");
+  todos.push(newItem.value);
+  newItem.value = "";
+  console.log(todos);
 
+  let ul = document.querySelector("ul"); //parentElement
+  let li = document.createElement("li"); //newElement
 
-
-// todos.forEach(item => {
-//     item;
-//     console.log(todos[item]);
-// })
-
-
-// todos.forEach(item => {
-//     return item;  }
-    
-
-
-
-
-
+  setElementAttributes(ul, li, todos);
+});
