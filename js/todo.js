@@ -23,12 +23,13 @@ let form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
    event.preventDefault();
 
-   const newItem = document.querySelector("#element").value;
-   todos.push(newItem);
+   const newItem = document.querySelector("#element")
+   todos.push(newItem.value);
    console.log(todos);
    
-   let node = document.createElement("li");
-   node.innerText.
+   newItem.value = "";
+//    let node = document.createElement("li");
+//    node.innerText.
 })
 
 
