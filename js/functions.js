@@ -1,53 +1,78 @@
 /**
- * 
- * @param {array} array // todos array
- * @returns one arry element;
+ * Function to show items in the list
  */
 
-let arrayElement = (array) => {
-  for (let i = 0; i < array.length; i++) {
-    return array[i];
-  }
-};
+const viewTodo = (todos) => {
+  const ul = document.querySelector("ul");
+  ul.classList.add(
+    "list-group",
+    "list-group-flush",
+    "pt-5"
+  )
+  // vider la liste avant de remplir
+  ul.innerText = "";
 
-
-
-/**
- * 
- * @param {string} parentElement // existing tag, to which the child element will be appended
- * @param {string} newElement // new created tag - child element to parentElement
- * @param {array} array // array of items
- * 
- * The function creates new elements and belonging attributes (class, id, href, alt, src)
- */
-
-const setElementAttributes = (parentElement, newElement, array) => {
-  newElement.classList.add(
-    "list-group-item",
+  // loop on the todos array
+  todos.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item",
     "d-flex",
-    "justify-content-between"
-  );
-  parentElement.appendChild(newElement);
-  newElement.innerHTML = arrayElement(array); // !!!
+    "justify-content-between");
+    li.innerText = item;
 
-  let a = document.createElement("a");
-  a.setAttribute("id", "deleteItem");
-  a.setAttribute("href", "#");
-  newElement.appendChild(a);
+    const a = document.createElement("a");
+    a.href = "#";
+   //a.id = `${index}`;
+    a.id = `item-${index}`;
+    a.classList.add("deleteItem");
 
-  let img = document.createElement("img");
-  img.setAttribute("src", "imgs/trash.svg");
-  img.setAttribute("alt", "Delete item");
-  img.classList.add("icon-delete");
-  a.appendChild(img);
-};
+    const img = document.createElement("img");
+    img.setAttribute("src", "imgs/trash.svg");
+    img.setAttribute("alt", "Delete item");
+    img.classList.add("icon-delete");
 
+    a.append(img);
+    li.appendChild(a);
+    // add li at the end of list, etc a and img
+    ul.appendChild(li);   
 
-// array.forEach(function (item) {
-   /* newElement.innerHTML += item;
-})
+      
+    /*
+  a.addEventListener("click", () => {
+   todos.splice(`${index}`, 1)
+   if (`${index}` === a.id) {
+     a.parentElement.remove();
+   }
+   console.log(todos);
+      })   
+  */
+  });
 
-todos.forEach(function (item) {
+  eventsLinks(todos);
+}
 
-})
-*/
+// appliquer un ecouter d'evenement sur tous les liens de suppression
+const eventsLinks = (todos) => {
+  // recuper tous les buttons de suppression
+  const links = document.querySelectorAll(".deleteItem");  // visi a
+
+  //ajoute un ecouter d evenement sur les buttons de suppression
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      removeItem(link.id, todos);
+    });
+  });
+
+}
+
+// suprime un element de la liste
+const removeItem = (id, todos) => {
+    // extraire le numero de la chaine
+  //   let idPart = id.substr(5);
+  const index = id.split("item-");
+  console.log(index[1]);
+
+  todos.splice(index[1], 1);
+
+viewTodo(todos);
+}

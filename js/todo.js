@@ -8,7 +8,7 @@
  * Un élément ajouté à la liste devra systématiquement posséder ce code HTML :
  * <li class="list-group-item d-flex justify-content-between">
  *     An item
- *     <a href="#" id="deleteItem">
+ *     <a href="#" class="deleteItem">
  *         <img src="imgs/trash.svg" alt="Delete item" class="icon-delete">
  *     </a>
  * </li>
@@ -26,10 +26,9 @@ form.addEventListener("submit", (event) => {
   const newItem = document.querySelector("#element");
   todos.push(newItem.value);
   newItem.value = "";
-  console.log(todos);
+ 
+  viewTodo(todos);
 
-  let ul = document.querySelector("ul"); //parentElement
-  let li = document.createElement("li"); //newElement
-
-  setElementAttributes(ul, li, todos);
 });
+
+ 
