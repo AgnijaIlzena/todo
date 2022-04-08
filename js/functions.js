@@ -18,7 +18,9 @@ const viewTodo = (todos) => {
     li.classList.add("list-group-item",
     "d-flex",
     "justify-content-between");
+    li.id = `${index}`;
     li.innerText = item;
+
 
     const a = document.createElement("a");
     a.href = "#";
@@ -46,24 +48,50 @@ const viewTodo = (todos) => {
    console.log(todos);
       })   
   */
+
+
+   li.addEventListener("click", () => {
+    if (`${index}` === li.id) {
+      li
+    }
+   })   
+
+
   });
 
   eventsLinks(todos);
+  strikeOutItem();
+  //strikeThroughItems(todos);
 }   
 
 // appliquer un ecouter d'evenement sur tous les liens de suppression
 const eventsLinks = (todos) => {
   // recuper tous les buttons de suppression
-  const links = document.querySelectorAll(".deleteItem");  // visi a
+const links = document.querySelectorAll(".deleteItem");  // visi a
 
-  //ajoute un ecouter d evenement sur les buttons de suppression
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      removeItem(link.id, todos);
-    });
+//ajoute un ecouter d evenement sur les buttons de suppression
+links.forEach(link => {
+  link.addEventListener("click", () => {
+    removeItem(link.id, todos);
   });
-
+});
 }
+
+/*
+// appliquer un ecouter d'evenement sur tous les liens de suppression
+const strikeThroughItems = (todos) => {
+  // recuper tous les buttons de suppression
+const strikeItems = document.querySelectorAll("li");  // visi li
+
+//ajoute un ecouter d evenement sur les buttons de suppression
+strikeItems.forEach(strikeItem => {
+  strikeItem.addEventListener("click", () => {
+    addStrikeThrough(strikeItem.id, todos);
+  });
+});
+}
+*/
+
 
 // suprime un element de la liste
 const removeItem = (id, todos) => {
@@ -76,3 +104,17 @@ const removeItem = (id, todos) => {
 
 viewTodo(todos);
 }
+
+const  strikeOutItem = () => {
+  const items  = document.querySelectorAll('li');
+  items.forEach(item=> {
+    item.addEventListener("click", () => {
+      item.style.textDecoration = "line-through";
+    });
+  });
+}
+
+
+
+
+

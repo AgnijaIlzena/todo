@@ -29,6 +29,13 @@ form.addEventListener("submit", (event) => {
  
   viewTodo(todos);
 
+  /*
+  let strike = document.querySelector("li");
+  strike.addEventListener("click", () => {
+   li.addclist.add("strikeThrough");
+ })
+ */
+
 });
 
  
