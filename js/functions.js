@@ -49,7 +49,7 @@ const viewTodo = (todos) => {
   });
 
   eventsLinks(todos);
-}
+}   
 
 // appliquer un ecouter d'evenement sur tous les liens de suppression
 const eventsLinks = (todos) => {
